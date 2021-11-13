@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import { CircularProgress } from '@material-ui/core';
+// import styled from "styled-components";
 
 interface Props {
   handleSubmit: (
@@ -95,3 +96,10 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
     </Formik>
   );
 }
+
+// const Formik= styled.div`
+
+// width: 80%;
+// height: 100vh;
+// background-color: blue;
+// `
