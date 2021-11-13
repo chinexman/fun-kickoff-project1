@@ -1,11 +1,13 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
+import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 import { FormikHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
 import { AppBar, Toolbar } from '@material-ui/core';
 import PetsIcon from '@mui/icons-material/Pets';
+import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
 import login from '../../helpers/APICalls/login';
 import LoginForm from './LoginForm/LoginForm';
@@ -47,17 +49,31 @@ export default function Login(): JSX.Element {
           <Typography variant="h6" className={classes.navheading}>
             Loving Sitter
           </Typography>
+          <Box className={classes.navbarbutton}>
+            <Link to="/login" className={classes.link}>
+              <Button className={classes.navbarlogin} variant="contained" color="warning">
+                LOGIN
+              </Button>
+            </Link>
+            <Link to="/signup" className={classes.link}>
+              <Button className={classes.navbarsignup} variant="outlined" color="error">
+                SIGN UP
+              </Button>
+            </Link>
+            <Typography variant="h6" className={classes.navheading2}>
+              Become a sitter
+            </Typography>
+          </Box>
         </Toolbar>
       </AppBar>
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <Box className={classes.form}>
-            <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
-            <Box width="100%" maxWidth={450} p={3} alignSelf="center">
+          <Box alignSelf="center" className={classes.form}>
+            <Box width="100%" maxWidth={450} p={3} alignSelf="center" className={classes.form1}>
               <Grid container>
                 <Grid item xs>
                   <Typography className={classes.welcome} component="h1" variant="h5">
-                    Welcome back!
+                    Login
                   </Typography>
                 </Grid>
               </Grid>
