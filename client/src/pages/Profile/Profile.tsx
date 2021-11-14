@@ -10,22 +10,53 @@ import PetsIcon from '@mui/icons-material/Pets';
 import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
 import login from '../../helpers/APICalls/login';
-import LoginForm from './LoginForm/LoginForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
+import profile from '../../helpers/APICalls/profile';
+import SignUpForm from './ProfileForm/ProfileForm';
 
-export default function Login(): JSX.Element {
+export default function Register(): JSX.Element {
   const classes = useStyles();
   const { updateLoginContext } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
 
   const handleSubmit = (
-    { email, password }: { email: string; password: string },
-    { setSubmitting }: FormikHelpers<{ email: string; password: string }>,
+    {
+      firstname,
+      lastname,
+      gender,
+      birthdate,
+      email,
+      phoneno,
+      whereyoulive,
+      describeyourself,
+    }: {
+      firstname: string;
+      lastname: string;
+      gender: string;
+      birthdate: string;
+      email: string;
+      phoneno: string;
+      whereyoulive: string;
+      describeyourself: string;
+    },
+    {
+      setSubmitting,
+    }: FormikHelpers<{
+      firstname: string;
+      lastname: string;
+      gender: string;
+      birthdate: string;
+      email: string;
+      phoneno: string;
+      whereyoulive: string;
+      describeyourself: string;
+    }>,
   ) => {
-    login(email, password).then((data) => {
+    profile(firstname, lastname, gender, birthdate, email, phoneno, whereyoulive, describeyourself).then((data) => {
       if (data.error) {
+        console.error({ error: data.error.message });
         setSubmitting(false);
         updateSnackBarMessage(data.error.message);
       } else if (data.success) {
@@ -51,12 +82,12 @@ export default function Login(): JSX.Element {
           </Typography>
           <Box className={classes.navbarbutton}>
             <Link to="/login" className={classes.link}>
-              <Button className={classes.navbarlogin} variant="contained" color="warning">
+              <Button className={classes.navbarlogin} variant="outlined" color="error">
                 LOGIN
               </Button>
             </Link>
             <Link to="/signup" className={classes.link}>
-              <Button className={classes.navbarsignup} variant="outlined" color="error">
+              <Button className={classes.navbarsignup} variant="contained" color="warning">
                 SIGN UP
               </Button>
             </Link>
@@ -77,7 +108,7 @@ export default function Login(): JSX.Element {
                   </Typography>
                 </Grid>
               </Grid>
-              <LoginForm handleSubmit={handleSubmit} />
+              <SignUpForm handleSubmit={handleSubmit} />
             </Box>
             <Box p={1} alignSelf="center" />
           </Box>
