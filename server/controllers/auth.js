@@ -106,6 +106,9 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
   });
 });
 
+
+
+
 // @route GET /auth/logout
 // @desc Logout user
 // @access Public

@@ -14,6 +14,8 @@ router.route('/register').post(validateRegister, registerUser);
 router.route('/login').post(validateLogin, loginUser);
 
 router.route('/user').get(protect, loadUser);
+router.route('/user/profile').put(protect, loadUser);
+
 
 router.route('/logout').get(logoutUser);
 
